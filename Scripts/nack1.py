@@ -35,7 +35,7 @@ import threading
 
 class nack1(gr.top_block, Qt.QWidget):
 
-    def __init__(self, MTU=1500):
+    def __init__(self, MTU=1500, file_source='/home/thevinduk/Transmitix/Main/2.Image/jpeg/input_with_preamble.jpeg'):
         gr.top_block.__init__(self, "Not titled yet", catch_exceptions=True)
         Qt.QWidget.__init__(self)
         self.setWindowTitle("Not titled yet")
@@ -279,7 +279,7 @@ class nack1(gr.top_block, Qt.QWidget):
         self.blocks_repack_bits_bb_0_0_0 = blocks.repack_bits_bb(1, 8, 'packet_len', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_0_0 = blocks.repack_bits_bb(8, 1, 'packet_len', False, gr.GR_MSB_FIRST)
         self.blocks_multiply_const_vxx_0 = blocks.multiply_const_cc(0.8)
-        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, '/home/thevinduk/Transmitix/Main/2.Image/jpeg/input_with_preamble.jpeg', False, 0, 0)
+        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, self.file_source, False, 0, 0)
         self.blocks_file_source_0.set_begin_tag(pmt.PMT_NIL)
 
 
@@ -520,7 +520,10 @@ def argument_parser():
     parser.add_argument(
         "--MTU", dest="MTU", type=intx, default=1500,
         help="Set MTU [default=%(default)r]")
-    return parser
+    parser.add_argument(
+        "--file_source", dest="file_source", type=str, default='/home/thevinduk/Transmitix/Main/2.Image/jpeg/input_with_preamble.jpeg',
+        help="Set file source [default=%(default)r]")
+    return parserr
 
 
 def main(top_block_cls=nack1, options=None):
@@ -529,7 +532,7 @@ def main(top_block_cls=nack1, options=None):
 
     qapp = Qt.QApplication(sys.argv)
 
-    tb = top_block_cls(MTU=options.MTU)
+    tb = top_block_cls(MTU=options.MTU, file_source=options.file_source)
 
     tb.start()
     tb.flowgraph_started.set()
