@@ -1,7 +1,7 @@
-import customtkinter as ctk
-from tkinter import filedialog
-import os
 import subprocess
+import os
+from tkinter import filedialog
+import customtkinter as ctk
 
 class FileTransmissionPage(ctk.CTkFrame):
     def __init__(self, parent, controller):
@@ -9,17 +9,17 @@ class FileTransmissionPage(ctk.CTkFrame):
         self.controller = controller
         self.file_path = None
 
-        label = ctk.CTkLabel(self, text="File Transmission Page")
-        label.pack(side="top", fill="x", pady=10)
-
-        self.file_label = ctk.CTkLabel(self, text="No file selected")
-        self.file_label.pack(side="top", fill="x", pady=10)
-
         select_button = ctk.CTkButton(self, text="Select File", command=self.select_file)
         select_button.pack()
 
+        self.file_label = ctk.CTkLabel(self, text="No file selected")
+        self.file_label.pack()
+
         process_button = ctk.CTkButton(self, text="Upload", command=self.process_file)
         process_button.pack()
+
+        transmit_button = ctk.CTkButton(self, text="Transmit", command=self.transmit_file)
+        transmit_button.pack()
 
         button1 = ctk.CTkButton(self, text="Go to Home",
                                 command=lambda: controller.show_frame("HomePage"))
@@ -40,9 +40,16 @@ class FileTransmissionPage(ctk.CTkFrame):
             # Determine the output file path
             directory, filename = os.path.split(self.file_path)
             name, ext = os.path.splitext(filename)
-            output_file = os.path.join(directory, f"Mod{name}{ext}")
+            self.output_file = os.path.join(directory, f"Mod{name}{ext}")
 
             # Run mod_in.py
-            subprocess.run(["python", "/home/thevinduk/Transmitix/TKinter/tkinter-frontend-app/Scripts/mod_in.py", self.file_path, output_file])
+            subprocess.run(["python", "/home/thevinduk/Transmitix/TKinter/tkinter-frontend-app/Scripts/mod_in.py", self.file_path, self.output_file])
         else:
             self.file_label.configure(text="No file selected. Please select a file first.")
+
+    def transmit_file(self):
+        if hasattr(self, 'output_file') and self.output_file:
+            # Run nack1.py with the output file as the file source
+            subprocess.run(["python3", "/home/thevinduk/Transmitix/TKinter/tkinter-frontend-app/Scripts/nack1.py", "--file_path", self.output_file])
+        else:
+            self.file_label.configure(text="No output file to transmit. Please process a file first.")
