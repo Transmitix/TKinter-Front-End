@@ -30,6 +30,7 @@ from gnuradio import soapy
 import nack1_epy_block_1_0 as epy_block_1_0  # embedded python block
 import sip
 import threading
+import sys
 
 
 
@@ -526,7 +527,7 @@ def argument_parser():
     return parser
 
 
-def main(top_block_cls=nack1, options=None):
+def main(top_block_cls=nack1, options=None, file_path=""):
     if options is None:
         options = argument_parser().parse_args()
 
@@ -538,7 +539,9 @@ def main(top_block_cls=nack1, options=None):
     qapp = Qt.QApplication(sys.argv)
 
     # Pass MTU and file_path to the top block
-    tb = top_block_cls(MTU=options.MTU, file_path=options.file_path)
+    # tb = top_block_cls(MTU=options.MTU, file_path=options.file_path)
+    tb = top_block_cls(MTU=options.MTU, file_path=file_path)
+
 
     tb.start()
     tb.flowgraph_started.set()
@@ -563,4 +566,5 @@ def main(top_block_cls=nack1, options=None):
 
 
 if __name__ == '__main__':
-    main()
+    file_path = sys.argv[1]
+    main(file_path)
