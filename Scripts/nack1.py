@@ -30,13 +30,12 @@ from gnuradio import soapy
 import nack1_epy_block_1_0 as epy_block_1_0  # embedded python block
 import sip
 import threading
-import sys
 
 
 
 class nack1(gr.top_block, Qt.QWidget):
 
-    def __init__(self, MTU=1500, file_path=""):
+    def __init__(self, MTU=1500):
         gr.top_block.__init__(self, "Not titled yet", catch_exceptions=True)
         Qt.QWidget.__init__(self)
         self.setWindowTitle("Not titled yet")
@@ -280,7 +279,7 @@ class nack1(gr.top_block, Qt.QWidget):
         self.blocks_repack_bits_bb_0_0_0 = blocks.repack_bits_bb(1, 8, 'packet_len', False, gr.GR_MSB_FIRST)
         self.blocks_repack_bits_bb_0_0 = blocks.repack_bits_bb(8, 1, 'packet_len', False, gr.GR_MSB_FIRST)
         self.blocks_multiply_const_vxx_0 = blocks.multiply_const_cc(0.8)
-        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, file_path, False, 0, 0)
+        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_char*1, '/home/thevinduk/Repositories/Transmitix/TKinter-Front-End/Transmissions/ModTest1.jpeg', False, 0, 0)
         self.blocks_file_source_0.set_begin_tag(pmt.PMT_NIL)
 
 
@@ -521,37 +520,26 @@ def argument_parser():
     parser.add_argument(
         "--MTU", dest="MTU", type=intx, default=1500,
         help="Set MTU [default=%(default)r]")
-    parser.add_argument(
-        "--file_path", dest="file_path", type=str, required=True,
-        help="Set the file path for input [required]")
     return parser
 
 
-def main(top_block_cls=nack1, options=None, file_path=""):
+def main(top_block_cls=nack1, options=None):
     if options is None:
         options = argument_parser().parse_args()
 
-    # Validate the file path
-    if not options.file_path:
-        print("Error: --file_path argument is required.")
-        sys.exit(1)
-
     qapp = Qt.QApplication(sys.argv)
 
-    # Pass MTU and file_path to the top block
-    # tb = top_block_cls(MTU=options.MTU, file_path=options.file_path)
-    tb = top_block_cls(MTU=options.MTU, file_path=file_path)
-
+    tb = top_block_cls(MTU=options.MTU)
 
     tb.start()
     tb.flowgraph_started.set()
 
     tb.show()
 
-    # Signal handler for clean shutdown
     def sig_handler(sig=None, frame=None):
         tb.stop()
         tb.wait()
+
         Qt.QApplication.quit()
 
     signal.signal(signal.SIGINT, sig_handler)
@@ -563,8 +551,5 @@ def main(top_block_cls=nack1, options=None, file_path=""):
 
     qapp.exec_()
 
-
-
 if __name__ == '__main__':
-    file_path = sys.argv[1]
-    main(file_path)
+    main()
