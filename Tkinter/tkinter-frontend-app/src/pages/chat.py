@@ -1,0 +1,46 @@
+import customtkinter as ctk
+
+class ChatPage(ctk.CTkFrame):
+    def __init__(self, parent, controller):
+        ctk.CTkFrame.__init__(self, parent)
+        self.controller = controller
+
+        # Configure grid layout
+        self.grid_rowconfigure(0, weight=1)
+        self.grid_columnconfigure(0, weight=1)
+
+        # Title label
+        self.title_label = ctk.CTkLabel(self, text="Chat Now!", font=("Arial", 20))
+        self.title_label.grid(row=0, column=0, padx=10, pady=10, sticky="w")
+
+        # Connect button
+        self.send_button = ctk.CTkButton(self, text="Connect", command=self.loading)
+        self.send_button.grid(row=0, column=1, padx=10, pady=10)
+
+        # Chat display area
+        self.chat_display = ctk.CTkTextbox(self, width=500, height=400, state="disabled")
+        self.chat_display.grid(row=1, column=0, columnspan=2, padx=10, pady=10, sticky="nsew")
+
+        # Input field
+        self.input_field = ctk.CTkEntry(self, width=400, placeholder_text="Type your message here...")
+        self.input_field.grid(row=2, column=0, padx=10, pady=10, sticky="ew")
+
+        # Send button
+        self.send_button = ctk.CTkButton(self, text="Send", command=self.send_message)
+        self.send_button.grid(row=2, column=1, padx=10, pady=10)
+
+    def send_message(self):
+        message = self.input_field.get()
+        if message:
+            # Display message in the chat display
+            self.chat_display.configure(state="normal")
+            self.chat_display.insert("end", f"You: {message}\n")
+            self.chat_display.configure(state="disabled")
+            
+            # Clear input field
+            self.input_field.delete(0, "end")
+    
+    # timer_id = None
+
+    def loading(self):
+        pass
