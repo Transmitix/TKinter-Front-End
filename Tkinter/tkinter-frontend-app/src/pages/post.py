@@ -89,7 +89,7 @@ class PostPage(ctk.CTkFrame):
         if hasattr(self, 'output_file') and self.output_file:
             try:
                 # Print the command for debugging
-                cmd = ["python3", "/home/thevinduk/Downloads/nack1.py", "--file-path", self.output_file]
+                cmd = ["python3", "/home/thevinduk/Repositories/TKinter-Front-End-2/Scripts/nack1.py", "--file-path", self.output_file]
                 print(f"Executing command: {' '.join(cmd)}")
                 
                 result = subprocess.run(
