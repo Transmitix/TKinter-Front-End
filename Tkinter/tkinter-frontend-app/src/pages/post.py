@@ -83,11 +83,17 @@ class PostPage(ctk.CTkFrame):
         else:
             self.file_label.configure(text="No file selected. Please select a file first.")
 
+    
+    
     def transmit_file(self):
         if hasattr(self, 'output_file') and self.output_file:
             try:
+                # Print the command for debugging
+                cmd = ["python3", "/home/thevinduk/Downloads/nack1.py", "--file-path", self.output_file]
+                print(f"Executing command: {' '.join(cmd)}")
+                
                 result = subprocess.run(
-                    ["python3", "/home/thevinduk/Repositories/TKinter-Front-End-1/Scripts/nack1.py", "--file-path", r"{}".format(self.output_file)],
+                    cmd,
                     capture_output=True,
                     text=True
                 )
@@ -95,6 +101,7 @@ class PostPage(ctk.CTkFrame):
                     print("File transmission started successfully")
                 else:
                     print(f"Error starting transmission: {result.stderr}")
+                    print(f"Command output: {result.stdout}")
             except Exception as e:
                 print(f"Failed to start transmission: {str(e)}")
         else:
