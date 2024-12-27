@@ -1,4 +1,5 @@
 import customtkinter as ctk
+import subprocess
 
 class ChatPage(ctk.CTkFrame):
     def __init__(self, parent, controller):
