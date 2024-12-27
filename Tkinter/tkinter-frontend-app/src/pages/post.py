@@ -89,7 +89,7 @@ class PostPage(ctk.CTkFrame):
         if hasattr(self, 'output_file') and self.output_file:
             try:
                 # Print the command for debugging
-                cmd = ["python3", "/home/thevinduk/Repositories/TKinter-Front-End-2/Scripts/nack1.py", "--file-path", self.output_file]
+                cmd = ["python3", "/home/thevinduk/Repositories/TKinter-Front-End/Scripts/nack1.py", "--file-path", self.output_file]
                 print(f"Executing command: {' '.join(cmd)}")
                 
                 result = subprocess.run(
@@ -110,7 +110,23 @@ class PostPage(ctk.CTkFrame):
     # timer_id = None
 
     def loading(self):
-        pass
+        try:
+            # Print the command for debugging
+            cmd = ["python3", "/home/thevinduk/Repositories/TKinter-Front-End/Scripts/nack1r.py"]
+            print(f"Executing command: {' '.join(cmd)}")
+            
+            result = subprocess.run(
+                cmd,
+                capture_output=True,
+                text=True
+            )
+            if result.returncode == 0:
+                print("nack1r.py started successfully")
+            else:
+                print(f"Error starting nack1r.py: {result.stderr}")
+                print(f"Command output: {result.stdout}")
+        except Exception as e:
+            print(f"Failed to start nack1r.py: {str(e)}")
 
     def display_files(self):
         """Display the list of added files."""
