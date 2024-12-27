@@ -43,4 +43,20 @@ class ChatPage(ctk.CTkFrame):
     # timer_id = None
 
     def loading(self):
-        pass
+        try:
+            cmd = ["python3", "/home/thevinduk/Repositories/TKinter-Front-End/Scripts/nack1r.py"]
+            print(f"Executing command: {' '.join(cmd)}")
+            
+            result = subprocess.run(
+                cmd,
+                capture_output=True,
+                text=True
+            )
+            if result.returncode == 0:
+                print("nack1r.py started successfully")
+            else:
+                print(f"Error starting nack1r.py: {result.stderr}")
+                print(f"Command output: {result.stdout}")
+        except Exception as e:
+            print(f"Failed to start nack1r.py: {str(e)}")
+

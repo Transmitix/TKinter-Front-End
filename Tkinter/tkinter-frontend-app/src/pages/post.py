@@ -111,7 +111,6 @@ class PostPage(ctk.CTkFrame):
 
     def loading(self):
         try:
-            # Print the command for debugging
             cmd = ["python3", "/home/thevinduk/Repositories/TKinter-Front-End/Scripts/nack1r.py"]
             print(f"Executing command: {' '.join(cmd)}")
             
