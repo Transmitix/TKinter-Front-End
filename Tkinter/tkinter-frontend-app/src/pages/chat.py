@@ -14,8 +14,8 @@ class ChatPage(ctk.CTkFrame):
         self.title_label.grid(row=0, column=0, padx=10, pady=10, sticky="w")
 
         # Connect button
-        self.send_button = ctk.CTkButton(self, text="Connect", command=self.loading)
-        self.send_button.grid(row=0, column=1, padx=10, pady=10)
+        self.connect_button = ctk.CTkButton(self, text="Connect", command=self.loading)
+        self.connect_button.grid(row=0, column=1, padx=10, pady=10)
 
         # Chat display area
         self.chat_display = ctk.CTkTextbox(self, width=500, height=400, state="disabled")
@@ -25,9 +25,13 @@ class ChatPage(ctk.CTkFrame):
         self.input_field = ctk.CTkEntry(self, width=400, placeholder_text="Type your message here...")
         self.input_field.grid(row=2, column=0, padx=10, pady=10, sticky="ew")
 
+        # Upload button
+        self.upload_button = ctk.CTkButton(self, text="Upload", command=self.upload)
+        self.upload_button.grid(row=2, column=1, padx=10, pady=10, sticky="e")
+
         # Send button
         self.send_button = ctk.CTkButton(self, text="Send", command=self.send_message)
-        self.send_button.grid(row=2, column=1, padx=10, pady=10)
+        self.send_button.grid(row=2, column=2, padx=10, pady=10)
 
     def send_message(self):
         message = self.input_field.get()
@@ -40,7 +44,9 @@ class ChatPage(ctk.CTkFrame):
             # Clear input field
             self.input_field.delete(0, "end")
     
-    # timer_id = None
+    def upload(self):
+        print("Upload button clicked")
+        # Add your upload functionality here
 
     def loading(self):
         try:
