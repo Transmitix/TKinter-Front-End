@@ -88,8 +88,11 @@ class PostPage(ctk.CTkFrame):
     def transmit_file(self):
         if hasattr(self, 'output_file') and self.output_file:
             try:
-                # Print the command for debugging
+                # cmd for bladerf script
                 cmd = ["python3", "/home/thevinduk/Repositories/TKinter-Front-End/Scripts/nack1.py", "--file-path", self.output_file]
+
+                #cmd for virtual channel testing
+                # cmd = ["python3", "/home/thevinduk/Repositories/TKinter-Front-End/Scripts/Virtual Channel/QPSK_text_tx_rx.py", "--file-path", self.output_file]
                 print(f"Executing command: {' '.join(cmd)}")
                 
                 result = subprocess.run(
