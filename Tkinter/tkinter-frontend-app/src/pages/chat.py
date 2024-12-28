@@ -44,6 +44,14 @@ class ChatPage(ctk.CTkFrame):
             with open(self.file_path, "w") as file:
                 file.write(message)
 
+            # Display message in the chat display
+            self.chat_display.configure(state="normal")
+            self.chat_display.insert("end", f"You: {message}\n")
+            self.chat_display.configure(state="disabled")
+            
+            # Clear input field
+            self.input_field.delete(0, "end")
+
             # Run mod_in.py script
             try:
                 mod_in_cmd = ["python3", "/home/thevinduk/Repositories/TKinter-Front-End/Scripts/mod_in.py", self.file_path , self.output_file_path]
@@ -68,13 +76,6 @@ class ChatPage(ctk.CTkFrame):
                 print(f"Failed to run nack1r.py: {str(e)}")
                 return
 
-            # Display message in the chat display
-            self.chat_display.configure(state="normal")
-            self.chat_display.insert("end", f"You: {message}\n")
-            self.chat_display.configure(state="disabled")
-            
-            # Clear input field
-            self.input_field.delete(0, "end")
     
     def refresh(self):
         received_file_path = "/home/thevinduk/Repositories/TKinter-Front-End/Chats/Received/Output.txt"
@@ -82,7 +83,7 @@ class ChatPage(ctk.CTkFrame):
 
         if os.path.exists(received_file_path):
             try:
-            # Run modout.py script
+                # Run modout.py script
                 mod_out_cmd = ["python3", "/home/thevinduk/Repositories/TKinter-Front-End/Scripts/mod_out.py", received_file_path, mod_out_file_path]
                 mod_out_result = subprocess.run(mod_out_cmd, capture_output=True, text=True)
                 if mod_out_result.returncode != 0:
