@@ -2,10 +2,10 @@ import sys
 import os
 
 def add_preamble_and_end_delimiter(file_path):
-    with open('./Formatting/preamble.txt', 'rb') as f1:
+    with open('Formatting/preamble.txt', 'rb') as f1:
         preamble = f1.read()
     
-    with open('./Formatting/tail.txt', 'rb') as f2:
+    with open('Formatting/tail.txt', 'rb') as f2:
         tail = f2.read()
 
     with open(file_path, 'rb') as input_file:
@@ -13,7 +13,7 @@ def add_preamble_and_end_delimiter(file_path):
 
     file_name = os.path.basename(file_path)
     print(file_name)
-    output_path = './Files/to_be_sent/'+ file_name
+    output_path = 'Files/to_be_sent/'+ file_name
     file_name = file_name.encode("utf-8")
 
     file_name_identifier = ("1111000011110000").encode("utf-8")
@@ -28,14 +28,17 @@ def add_preamble_and_end_delimiter(file_path):
 
     print(f"Preamble and end delimiter added. Output saved to {output_path}")
 
-add_preamble_and_end_delimiter("test_files/flower.tmp")
+# add_preamble_and_end_delimiter("test_files/flower.tmp") # debugging
+
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("Usage: python mod_in.py <input_file> <output_file>")
+        # print("Usage: python mod_in.py <input_file> <output_file>")
         sys.exit(1)
 
     input_file = sys.argv[1]
-    output_file = sys.argv[2]
-    add_preamble_and_end_delimiter(input_file, output_file)
+    # output_file = sys.argv[2]
+    # add_preamble_and_end_delimiter(input_file, output_file)
+    add_preamble_and_end_delimiter(input_file)
+
 
 
