@@ -31,4 +31,4 @@ def remove_preamble_and_end_delimiter(input_path, output_path):
 # remove_preamble_and_end_delimiter('/home/thevinduk/Transmitix/Main/2.Image/jpeg/Output.jpeg', '/home/thevinduk/Transmitix/Main/2.Image/jpeg/output_no_pre_no_del.jpeg') # image
 # remove_preamble_and_end_delimiter('/home/thevinduk/Transmitix/Main/3.Video/ts/Output.ts', '/home/thevinduk/Transmitix/Main/3.Video/ts/output_no_pre_no_del.ts') # video
 # remove_preamble_and_end_delimiter('/home/thevinduk/Transmitix/Messaging/Output.txt', '/home/thevinduk/Transmitix/Messaging/OutputNoPreamble.txt') # audio
-remove_preamble_and_end_delimiter('/home/thevinduk/Repositories/TKinter-Front-End/Chats/Received/Output.txt', '/home/thevinduk/Repositories/TKinter-Front-End/Chats/Received/Processed_Output.txt')
+remove_preamble_and_end_delimiter('./Chats/Received/Processed_Output.txt')

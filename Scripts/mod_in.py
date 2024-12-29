@@ -2,10 +2,10 @@ import sys
 import os
 
 def add_preamble_and_end_delimiter(file_path, output_path):
-    with open('/home/thevinduk/Transmitix/Main/Final Preformatting/preamble.txt', 'rb') as f1:
+    with open('./Formatting/preamble.txt', 'rb') as f1:
         preamble = f1.read()
     
-    with open('/home/thevinduk/Transmitix/Main/Final Preformatting/tail.txt', 'rb') as f2:
+    with open('./Formatting/tail.txt', 'rb') as f2:
         tail = f2.read()
 
     with open(file_path, 'rb') as input_file:

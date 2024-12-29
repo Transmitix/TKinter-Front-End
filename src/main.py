@@ -4,7 +4,6 @@ from pages.sent import SentPage
 from pages.chat import ChatPage
 from pages.inbox import InboxPage
 
-
 class MainApp:
     def __init__(self, root):
         self.root = root
@@ -65,3 +64,4 @@ if __name__ == "__main__":
     root.geometry("1000x600")
     app = MainApp(root)
     root.mainloop()
+    
