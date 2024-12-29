@@ -59,7 +59,7 @@ class MainApp:
         frame.tkraise()
 
 if __name__ == "__main__":
-    ctk.set_appearance_mode("system")
+    ctk.set_appearance_mode("dark")
     ctk.set_default_color_theme("green")
     root = ctk.CTk()
     root.geometry("1000x600")

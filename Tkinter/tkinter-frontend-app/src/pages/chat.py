@@ -81,8 +81,8 @@ class ChatPage(ctk.CTkFrame):
             # Run nack1.py script
             try:
                 # Virtual Channel
-                nack1r_cmd = ["python3", "/home/thevinduk/Repositories/TKinter-Front-End/Scripts/Chat_Scripts/QPSK_text_tx_rx.py"]
-                # nack1r_cmd = ["python3", "/home/thevinduk/Repositories/TKinter-Front-End/Scripts/Chat_Scripts/nack1.py"]
+                # nack1r_cmd = ["python3", "/home/thevinduk/Repositories/TKinter-Front-End/Scripts/Chat_Scripts/QPSK_text_tx_rx.py"]
+                nack1r_cmd = ["python3", "/home/thevinduk/Repositories/TKinter-Front-End/Scripts/Chat_Scripts/nack1.py"]
                 nack1r_result = subprocess.run(nack1r_cmd, capture_output=True, text=True)
                 if nack1r_result.returncode != 0:
                     print(f"Error running nack1r.py: {nack1r_result.stderr}")
