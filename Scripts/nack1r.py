@@ -382,7 +382,7 @@ class nack1r(gr.top_block, Qt.QWidget):
         self.blocks_unpack_k_bits_bb_0 = blocks.unpack_k_bits_bb(2)
         self.blocks_throttle2_0_0_0 = blocks.throttle( gr.sizeof_char*1, spr, True, 0 if "auto" == "auto" else max( int(float(0.1) * spr) if "auto" == "time" else int(0.1), 1) )
         self.blocks_repack_bits_bb_0 = blocks.repack_bits_bb(1, 8, "", False, gr.GR_MSB_FIRST)
-        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_char*1, '/home/thevinduk/Repositories/TKinter-Front-End/received_files/Output.txt', False)
+        self.blocks_file_sink_0 = blocks.file_sink(gr.sizeof_char*1, './received_files/Output.txt', False)
         self.blocks_file_sink_0.set_unbuffered(True)
         self.blocks_char_to_float_1_1 = blocks.char_to_float(1, 1)
         self.blocks_char_to_float_0 = blocks.char_to_float(1, 1)

@@ -3,7 +3,8 @@ import os
 import webbrowser
 from datetime import datetime
 
-class SentPage(ctk.CTkFrame):
+
+class InboxPage(ctk.CTkFrame):
     def __init__(self, parent, controller):
         ctk.CTkFrame.__init__(self, parent)
         self.controller = controller
@@ -13,11 +14,11 @@ class SentPage(ctk.CTkFrame):
         self.grid_columnconfigure(0, weight=1)
 
         # Title label
-        self.title_label = ctk.CTkLabel(self, text="Files Sent", font=("Arial", 20))
+        self.title_label = ctk.CTkLabel(self, text="Inbox", font=("Arial", 20))
         self.title_label.grid(row=0, column=0, padx=10, pady=10, sticky="w")
 
         # File list display area
-        self.file_listbox = ctk.CTkTextbox(self, width=500, height=400, state="disabled")
+        self.file_listbox = ctk.CTkTextbox(self, width=800, height=400, state="disabled")
         self.file_listbox.grid(row=1, column=0, columnspan=2, padx=10, pady=10, sticky="nsew")
 
         # Refresh button to reload files
@@ -25,7 +26,7 @@ class SentPage(ctk.CTkFrame):
         self.refresh_button.grid(row=2, column=0, padx=10, pady=10, sticky="w")
 
         # Load the sent files on initialization
-        self.sent_files_folder = "./sent_files"  # Path to the folder where files are stored
+        self.sent_files_folder = "./Files/received_files"  # Path to the folder where files are stored
         self.load_sent_files()
 
     def load_sent_files(self):

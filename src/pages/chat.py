@@ -49,8 +49,8 @@ class ChatPage(ctk.CTkFrame):
 
     def send_message(self):
         message = self.input_field.get()
-        self.file_path = "/home/thevinduk/Repositories/TKinter-Front-End/Chats/Sent/message.txt"
-        self.output_file_path = "/home/thevinduk/Repositories/TKinter-Front-End/Chats/Sent/message.txt"
+        self.file_path = "./Chats/Sent/message.txt"
+        self.output_file_path = "./Chats/Sent/message.txt"
         if message:
             # Write message to a text file
             with open(self.file_path, "w") as file:
@@ -69,7 +69,7 @@ class ChatPage(ctk.CTkFrame):
 
             # Run mod_in.py script
             try:
-                mod_in_cmd = ["python3", "/home/thevinduk/Repositories/TKinter-Front-End/Scripts/mod_in.py", self.file_path , self.output_file_path]
+                mod_in_cmd = ["python3", "./Scripts/mod_in.py", self.file_path , self.output_file_path]
                 mod_in_result = subprocess.run(mod_in_cmd, capture_output=True, text=True)
                 if mod_in_result.returncode != 0:
                     print(f"Error running mod_in.py: {mod_in_result.stderr}")
@@ -82,7 +82,7 @@ class ChatPage(ctk.CTkFrame):
             try:
                 # Virtual Channel
                 # nack1r_cmd = ["python3", "/home/thevinduk/Repositories/TKinter-Front-End/Scripts/Chat_Scripts/QPSK_text_tx_rx.py"]
-                nack1r_cmd = ["python3", "/home/thevinduk/Repositories/TKinter-Front-End/Scripts/Chat_Scripts/nack1.py"]
+                nack1r_cmd = ["python3", "./Scripts/Chat_Scripts/nack1.py"]
                 nack1r_result = subprocess.run(nack1r_cmd, capture_output=True, text=True)
                 if nack1r_result.returncode != 0:
                     print(f"Error running nack1r.py: {nack1r_result.stderr}")
@@ -118,8 +118,8 @@ class ChatPage(ctk.CTkFrame):
     def refresh_received_messages(self):
         # file_path = './TKinter/tkinter-frontend-app/src/scripts/received_chat.txt'
 
-        received_file_path = "/home/thevinduk/Repositories/TKinter-Front-End/Chats/Received/Output.txt"
-        mod_out_file_path = "/home/thevinduk/Repositories/TKinter-Front-End/Chats/Received/Processed_Output.txt"
+        received_file_path = "./Chats/Received/Output.txt"
+        mod_out_file_path = "./Chats/Received/Processed_Output.txt"
 
         # if os.path.exists(file_path):
         #     with open(file_path, 'r', encoding='utf-8') as file:
@@ -134,7 +134,7 @@ class ChatPage(ctk.CTkFrame):
         if os.path.exists(received_file_path):
             try:
                 # Run modout.py script
-                mod_out_cmd = ["python3", "/home/thevinduk/Repositories/TKinter-Front-End/Scripts/mod_out.py", received_file_path, mod_out_file_path]
+                mod_out_cmd = ["python3", "./Scripts/mod_out.py", received_file_path, mod_out_file_path]
                 mod_out_result = subprocess.run(mod_out_cmd, capture_output=True, text=True)
                 if mod_out_result.returncode != 0:
                     print(f"Error running modout.py: {mod_out_result.stderr}")
@@ -188,7 +188,7 @@ class ChatPage(ctk.CTkFrame):
 
     def loading(self):
         try:
-            cmd = ["python3", "/home/thevinduk/Repositories/TKinter-Front-End/Scripts/nack1r.py"]
+            cmd = ["python3", "./Scripts/nack1r.py"]
             print(f"Executing command: {' '.join(cmd)}")
             
             result = subprocess.run(

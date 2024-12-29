@@ -79,7 +79,7 @@ class PostPage(ctk.CTkFrame):
             self.output_file = os.path.join(directory, f"Mod{name}{ext}")
 
             # Run mod_in.py
-            subprocess.run(["python", "/home/thevinduk/Transmitix/TKinter/tkinter-frontend-app/Scripts/mod_in.py", self.file_path, self.output_file])
+            subprocess.run(["python", "./Scripts/mod_in.py", self.file_path, self.output_file])
         else:
             self.file_label.configure(text="No file selected. Please select a file first.")
 
@@ -89,7 +89,7 @@ class PostPage(ctk.CTkFrame):
         if hasattr(self, 'output_file') and self.output_file:
             try:
                 # cmd for bladerf script
-                cmd = ["python3", "/home/thevinduk/Repositories/TKinter-Front-End/Scripts/nack1.py", "--file-path", self.output_file]
+                cmd = ["python3", "./Scripts/nack1.py", "--file-path", self.output_file]
 
                 #cmd for virtual channel testing
                 # cmd = ["python3", "/home/thevinduk/Repositories/TKinter-Front-End/Scripts/Virtual Channel/QPSK_text_tx_rx.py", "--file-path", self.output_file]
@@ -114,7 +114,7 @@ class PostPage(ctk.CTkFrame):
 
     def loading(self):
         try:
-            cmd = ["python3", "/home/thevinduk/Repositories/TKinter-Front-End/Scripts/nack1r.py"]
+            cmd = ["python3", "./Scripts/nack1r.py"]
             print(f"Executing command: {' '.join(cmd)}")
             
             result = subprocess.run(
