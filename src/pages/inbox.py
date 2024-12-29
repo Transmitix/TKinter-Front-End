@@ -26,13 +26,21 @@ class InboxPage(ctk.CTkFrame):
         self.refresh_button.grid(row=2, column=0, padx=10, pady=10, sticky="w")
 
         # Load the sent files on initialization
-        self.sent_files_folder = "./Files/received_files"  # Path to the folder where files are stored
+        self.sent_files_folder = "Files/received_files"  # Path to the folder where files are stored
         self.load_sent_files()
 
     def load_sent_files(self):
+        # Run modout.py script
+        modout_script_path = "Scripts/mod_out.py"
+        if os.path.exists(modout_script_path):
+            os.system(f"python {modout_script_path}")
+
+
         """Load the list of received files from the folder."""
         self.file_listbox.configure(state="normal")
         self.file_listbox.delete("1.0", "end")
+
+        
 
         # Ensure the directory exists
         if not os.path.exists(self.sent_files_folder):

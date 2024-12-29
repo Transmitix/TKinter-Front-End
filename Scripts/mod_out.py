@@ -35,7 +35,7 @@ def remove_preamble_and_end_delimiter():
 
     payload = file_data[name_delimiter_index+len(name_delimiter):] 
 
-    output_path = 'received_files/'+file_name.decode("utf-8")
+    output_path = 'Files/received_files/'+file_name.decode("utf-8")
 
     # Save the payload to the output file
     with open(output_path, 'wb') as output_file:
